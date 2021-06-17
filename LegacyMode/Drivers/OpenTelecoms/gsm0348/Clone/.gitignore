@@ -1,0 +1,25 @@
+# maven build files
+target/
+mvnw
+mvnw.cmd
+dependency-reduced-pom.xml
+*.versionsBackup
+
+# Eclipse project files
+.classpath
+.project
+.settings
+.externalToolBuilders
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Intellij plugin files
+atlassian-ide-plugin.xml
+
+# MAC_OSX
+*.DS_Store
+*.log
