@@ -1,0 +1,33 @@
+<assembly
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+  <id>pack</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/libs</outputDirectory>
+      <excludes>
+        <exclude>org.opentelecoms.gsm0348:gsm0348-api</exclude>
+        <exclude>org.opentelecoms.gsm0348:gsm0348-impl</exclude>
+        <exclude>org.opentelecoms.gsm0348:gsm0348-crypto</exclude>
+      </excludes>
+    </dependencySet>
+    <dependencySet>
+      <outputDirectory>/</outputDirectory>
+      <includes>
+        <include>org.opentelecoms.gsm0348:gsm0348-api</include>
+        <include>org.opentelecoms.gsm0348:gsm0348-impl</include>
+        <include>org.opentelecoms.gsm0348:gsm0348-crypto</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+  <files>
+    <file>
+      <source>src/main/resources/license.txt</source>
+    </file>
+  </files>
+</assembly>
