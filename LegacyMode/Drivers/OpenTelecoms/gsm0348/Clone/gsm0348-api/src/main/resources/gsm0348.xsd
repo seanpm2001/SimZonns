@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns="org.opentelecoms.gsm0348" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="org.opentelecoms.gsm0348"
+            xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0" elementFormDefault="qualified">
+
+  <xsd:simpleType name="CipheringAlgorithmMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='DES_CBC'/>
+      <xsd:enumeration value='TRIPLE_DES_CBC_2_KEYS'/>
+      <xsd:enumeration value='TRIPLE_DES_CBC_3_KEYS'/>
+      <xsd:enumeration value='DES_ECB'/>
+      <xsd:enumeration value='AES_CBC'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="PacketHeader"/>
+
+  <xsd:complexType name="Packet">
+    <xsd:annotation>
+      <xsd:appinfo>
+        <jxb:class>
+          <jxb:javadoc><![CDATA[This interface describes GSM 03.48 packet.
+@author Victor Platov]]></jxb:javadoc>
+        </jxb:class>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Data" type="xsd:hexBinary" minOccurs="1" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:appinfo>
+            <jxb:property>
+              <jxb:javadoc>Packet data
+                @return byte[]
+              </jxb:javadoc>
+            </jxb:property>
+          </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommandPacketHeader">
+    <xsd:complexContent>
+      <xsd:extension base="SecurityHeader">
+        <xsd:sequence>
+          <xsd:element name="SPI" type="SPI" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="KIC" type="KIC" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="KID" type="KID" maxOccurs="1" minOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SecurityHeader">
+    <xsd:complexContent>
+      <xsd:extension base="PacketHeader">
+        <xsd:sequence>
+          <xsd:element name="TAR" type="TAR" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="PaddingCounter" type="xsd:byte" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="Security" type="Security" maxOccurs="1" minOccurs="0"/>
+          <xsd:element name="Counter" type="Counter" maxOccurs="1" minOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ResponsePacketHeader">
+    <xsd:complexContent>
+      <xsd:extension base="SecurityHeader">
+        <xsd:sequence>
+          <xsd:element name="ResponseStatus" type="ResponsePacketStatus" maxOccurs="1" minOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommandPacket">
+    <xsd:complexContent>
+      <xsd:extension base="Packet">
+        <xsd:sequence>
+          <xsd:element name="Header" type="CommandPacketHeader" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ResponsePacket">
+    <xsd:complexContent>
+      <xsd:extension base="Packet">
+        <xsd:sequence>
+          <xsd:element name="Header" type="ResponsePacketHeader" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="KIC">
+    <xsd:all>
+      <xsd:element name="KeysetID" type="KeysetID"/>
+      <xsd:element name="CipheringAlgorithmMode" type="CipheringAlgorithmMode"/>
+      <xsd:element name="AlgorithmImplementation" type="AlgorithmImplementation"/>
+    </xsd:all>
+  </xsd:complexType>
+
+
+  <xsd:simpleType name="Security">
+    <xsd:restriction base="xsd:hexBinary">
+      <xsd:minLength value="4"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <xsd:simpleType name="Counter">
+    <xsd:restriction base="xsd:hexBinary">
+      <xsd:length value="5"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TAR">
+    <xsd:restriction base="xsd:hexBinary">
+      <xsd:length value="3"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="KeysetID">
+    <xsd:restriction base="xsd:byte">
+      <xsd:minInclusive value='0'/>
+      <xsd:maxInclusive value='15'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="AlgorithmImplementation">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='ALGORITHM_KNOWN_BY_BOTH_ENTITIES'/>
+      <xsd:enumeration value='DES'/>
+      <xsd:enumeration value='AES'/>
+      <xsd:enumeration value='CRC'/>
+      <xsd:enumeration value='PROPRIETARY_IMPLEMENTATIONS'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="ResponsePacketStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='POR_OK'/>
+      <xsd:enumeration value='RC_CC_DS_FAILED'/>
+      <xsd:enumeration value='CNTR_LOW'/>
+      <xsd:enumeration value='CNTR_HIGH'/>
+      <xsd:enumeration value='CNTR_BLOCKED'/>
+      <xsd:enumeration value='CIPHERING_ERROR'/>
+      <xsd:enumeration value='UNIDENTIFIED_SECURITY_ERROR'/>
+      <xsd:enumeration value='INSUFFICIENT_MEMORY'/>
+      <xsd:enumeration value='MORE_TIME'/>
+      <xsd:enumeration value='TAR_UNKNOWN'/>
+      <xsd:enumeration value='INSUFFICIENT_SECURITY_LEVEL'/>
+      <xsd:enumeration value='TO_BE_SENT_VIA_SMS_SUBMIT'/>
+      <xsd:enumeration value='TO_BE_SENT_VIA_PROCESSUNSTRUCTUREDSS_REQUEST'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="CertificationAlgorithmMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='CRC_16'/>
+      <xsd:enumeration value='CRC_32'/>
+      <xsd:enumeration value='DES_CBC'/>
+      <xsd:enumeration value='TRIPLE_DES_CBC_2_KEYS'/>
+      <xsd:enumeration value='TRIPLE_DES_CBC_3_KEYS'/>
+      <xsd:enumeration value='RESERVED'/>
+      <xsd:enumeration value='AES_CMAC'/>
+      <xsd:enumeration value='XOR4'/>
+      <xsd:enumeration value='XOR8'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="CertificationMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='NO_SECURITY'/>
+      <xsd:enumeration value='RC'/>
+      <xsd:enumeration value='CC'/>
+      <xsd:enumeration value='DS'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="PoRMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='NO_REPLY'/>
+      <xsd:enumeration value='REPLY_ALWAYS'/>
+      <xsd:enumeration value='REPLY_WHEN_ERROR'/>
+      <xsd:enumeration value='RESERVED'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="PoRProtocol">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='SMS_DELIVER_REPORT'/>
+      <xsd:enumeration value='SMS_SUBMIT'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="SynchroCounterMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='NO_COUNTER'/>
+      <xsd:enumeration value='COUNTER_NO_REPLAY_NO_CHECK'/>
+      <xsd:enumeration value='COUNTER_REPLAY_OR_CHECK'/>
+      <xsd:enumeration value='COUNTER_REPLAY_OR_CHECK_INCREMENT'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TransportProtocol">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value='SMS_PP'/>
+      <xsd:enumeration value='SMS_CB'/>
+      <xsd:enumeration value='CAT_TP'/>
+      <xsd:enumeration value='TCP_IP'/>
+      <xsd:enumeration value='USSD'/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="KID">
+    <xsd:all>
+      <xsd:element name="KeysetID" type="KeysetID"/>
+      <xsd:element name="CertificationAlgorithmMode" type="CertificationAlgorithmMode"/>
+      <xsd:element name="AlgorithmImplementation" type="AlgorithmImplementation"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommandSPI">
+    <xsd:all>
+      <xsd:element name="CertificationMode" type="CertificationMode"/>
+      <xsd:element name="SynchroCounterMode" type="SynchroCounterMode"/>
+      <xsd:element name="Ciphered" type="xsd:boolean"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="ResponseSPI">
+    <xsd:all>
+      <xsd:element name="PoRProtocol" type="PoRProtocol"/>
+      <xsd:element name="PoRMode" type="PoRMode"/>
+      <xsd:element name="PoRCertificateMode" type="CertificationMode"/>
+      <xsd:element name="Ciphered" type="xsd:boolean"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="SPI">
+    <xsd:all>
+      <xsd:element name="CommandSPI" type="CommandSPI"/>
+      <xsd:element name="ResponseSPI" type="ResponseSPI"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="CardProfile">
+    <xsd:sequence>
+      <xsd:element name="Name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="TransportProtocol" type="TransportProtocol" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="KIC" type="KIC" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="KID" type="KID" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="SPI" type="SPI" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="TAR" type="TAR" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="SignatureAlgorithm" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="CipheringAlgorithm" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

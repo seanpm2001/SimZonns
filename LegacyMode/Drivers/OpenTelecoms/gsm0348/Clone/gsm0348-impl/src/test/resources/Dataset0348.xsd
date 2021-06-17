@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xs:schema id="Dataset" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	xmlns:gsm0348="org.opentelecoms.gsm0348">
+	<xs:import namespace="org.opentelecoms.gsm0348" schemaLocation="../../../../gsm0348-api/src/main/resources/gsm0348.xsd"/>
+
+	<xs:element name="Dataset">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="testcase" type="testCaseType"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="testCaseType">
+		<xs:all>
+			<xs:element name="CardProfile" type="gsm0348:CardProfile">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:class implClass="org.opentelecoms.gsm0348.api.model.CardProfile"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CipheringKey" type="xs:hexBinary" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="SignatureKey" type="xs:hexBinary" minOccurs="1" maxOccurs="1"/>
+
+			<xs:element name="Counter" type="gsm0348:Counter" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Data" type="xs:hexBinary" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Result">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="RequestResult" type="xs:hexBinary" minOccurs="1" maxOccurs="1"/>
+						<xs:element name="ResponseResult" type="gsm0348:ResponsePacket" minOccurs="1" maxOccurs="1">
+							<xs:annotation>
+								<xs:appinfo>
+									<jxb:class implClass="org.opentelecoms.gsm0348.api.model.ResponsePacket"/>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="type" default="request">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value='request'/>
+					<xs:enumeration value='response'/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
