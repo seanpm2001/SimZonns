@@ -1,0 +1,223 @@
+# Start of script
+# .gitattributes
+# This file defines what languages can show up in the GitHub linguist menu (the menu that tells you what percentage each language is using up on this project.
+# Some non-programming languages must be included manually with this file. Want to create your own? Do something similar to what is done here, and name the file
+# .gitattributes
+# and nothing else, no characters before, no characters after
+# Start of linguist script
+# HTML (HyperText Markup Language) document
+*.htm linguist-detectable=true
+*.htm linguist-documentation=false
+*.htm linguist-language=HTML
+*.html linguist-detectable=true
+*.html linguist-documentation=false
+*.html linguist-language=HTML
+*.mhtm linguist-detectable=true
+*.mhtm linguist-documentation=false
+*.mhtm linguist-language=HTML
+*.mhtml linguist-detectable=true
+*.mhtml linguist-documentation=false
+*.mhtml linguist-language=HTML
+*.xhtm linguist-detectable=true
+*.xhtm linguist-documentation=false
+*.xhtm linguist-language=HTML
+*.xhtml linguist-detectable=true
+*.xhtml linguist-documentation=false
+*.xhtml linguist-language=HTML
+# HTA (HTML Application) file
+*.hta linguist-detectable=true
+*.hta linguist-documentation=false
+*.hta linguist-language=HTML
+# CSS (Cascade Styling Sheets) stylesheet file
+*.css linguist-detectable=true
+*.css linguist-documentation=false
+*.css linguist-language=CSS
+# Less stylesheet file
+*.less linguist-detectable=true
+*.less linguist-documentation=false
+*.less linguist-language=Less
+# Java source file
+*.java linguist-detectable=true
+*.java linguist-documentation=false
+*.java linguist-language=Java
+# Kotlin source file
+*.kt linguist-detectable=true
+*.kt linguist-documentation=false
+*.kt linguist-language=Kotlin
+*.kts linguist-detectable=true
+*.kts linguist-documentation=false
+*.kts linguist-language=Kotlin
+*.ktm linguist-detectable=true
+*.ktm linguist-documentation=false
+*.ktm linguist-language=Kotlin
+# Objective-C source file
+*.m linguist-detectable=true
+*.m linguist-documentation=false
+*.m linguist-language=Objective-C
+# C source file
+*.c linguist-detectable=true
+*.c linguist-documentation=false
+*.c linguist-language=C
+# C header source file
+*.h linguist-detectable=true
+*.h linguist-documentation=false
+*.h linguist-language=C
+# Python source file
+*.py linguist-detectable=true
+*.py linguist-documentation=false
+*.py linguist-language=Python
+*.py3 linguist-detectable=true
+*.py3 linguist-documentation=false
+*.py3 linguist-language=Python
+*.pyt linguist-detectable=true
+*.pyt linguist-documentation=false
+*.pyt linguist-language=Python
+*.pyw linguist-detectable=true
+*.pyw linguist-documentation=false
+*.pyw linguist-language=Python
+# Swift source file
+*.swift linguist-detectable=true
+*.swift linguist-documentation=false
+*.swift linguist-language=Swift
+# Shell source file
+*.sh linguist-detectable=true
+*.sh linguist-documentation=false
+*.sh linguist-language=Shell
+# Assembly source file
+*.asm linguist-detectable=true
+*.asm linguist-documentation=false
+*.asm linguist-language=Assembly
+# JSON (JavaScript Object Notation) source file
+*.json linguist-detectable=false
+*.json linguist-documentation=false
+*.json linguist-language=JSON
+# WebVTT subtitle file
+*.vtt linguist-detectable=true
+*.vtt linguist-documentation=false
+*.vtt linguist-language=WebVTT
+# SubRip subtitle file
+*.srt linguist-detectable=true
+*.srt linguist-documentation=false
+*.srt linguist-language=SubRip-Text
+# YAML (YAML Ain't Markup Language) document
+# Do not include, as it would become a dominant language that shouldn't be the language people refer this project to
+*.yml linguist-detectable=false
+*.yml linguist-documentation=false
+*.yml linguist-language=YAML
+*.yaml linguist-detectable=false
+*.yaml linguist-documentation=false
+*.yaml linguist-language=YAML
+# Markdown
+*.md linguist-detectable=true
+*.md linguist-documentation=false
+*.md linguist-language=Markdown
+*.mkd linguist-detectable=true
+*.mkd linguist-documentation=false
+*.mkd linguist-language=Markdown
+*.mdown linguist-detectable=true
+*.mdown linguist-documentation=false
+*.mdown linguist-language=Markdown
+*.markdown linguist-detectable=true
+*.markdown linguist-documentation=false
+*.markdown linguist-language=Markdown
+# Makefile (GNU Make)
+# Do not include, as it is not needed to be shown
+*.mk linguist-detectable=false
+*.mk linguist-documentation=false
+*.mk linguist-language=Makefile
+*.mak linguist-detectable=false
+*.mak linguist-documentation=false
+*.mak linguist-language=Makefile
+*.make linguist-detectable=false
+*.make linguist-documentation=false
+*.make linguist-language=Makefile
+*.makefile linguist-detectable=false
+*.makefile linguist-documentation=false
+*.makefile linguist-language=Makefile
+# SVG (Scalable Vector Graphics) image file
+# Do not include, as it would become the 100% dominant language and would hide all the other languages as "other"
+*.svg linguist-detectable=false
+*.svg linguist-documentation=false
+*.svg linguist-language=SVG
+# Git Configuration files
+# Do not include, as it would become the 100% dominant language and would hide all the other languages as "other"
+*.gitattributes linguist-detectable=false
+*.gitattributes linguist-documentation=false
+*.gitignore linguist-detectable=false
+*.gitignore linguist-documentation=false
+*.editorconfig linguist-detectable=false
+*.editorconfig linguist-documentation=false
+# Plain Text document
+# Do not include, as it would become the 100% dominant language and would hide all the other languages as "other"
+*.txt linguist-detectable=false
+*.txt linguist-documentation=false
+*.txt linguist-language=Plain-Text
+# ReStructuredText
+*.rst linguist-detectable=false
+*.rst linguist-documentation=false
+*.rst linguist-language=ReStructured-Text
+# WikiText
+*.wiki linguist-detectable=false
+*.wiki linguist-documentation=false
+*.wiki linguist-language=WikiText
+# BibTeX
+*.bib linguist-detectable=false
+*.bib linguist-documentation=false
+*.bib linguist-language=BibTeX
+# TeX
+*.tex linguist-detectable=false
+*.tex linguist-documentation=false
+*.tex linguist-language=TeX
+# Desktop entry
+*.desktop linguist-detectable=false
+*.desktop linguist-documentation=false
+*.desktop linguist-language=desktop
+# INI/CFG
+*.ini linguist-detectable=false
+*.ini linguist-documentation=false
+*.ini linguist-language=INI
+*.cfg linguist-detectable=false
+*.cfg linguist-documentation=false
+*.cfg linguist-language=INI
+# CFF
+*.cff linguist-detectable=false
+*.cff linguist-documentation=false
+*.cff linguist-language=Citation-File-Format
+# PNG/PNS
+*.png linguist-detectable=false
+*.png linguist-documentation=false
+*.png linguist-language=PNG
+*.pns linguist-detectable=false
+*.pns linguist-documentation=false
+*.pns linguist-language=PNG
+# JPG/JPEG/JFIF/JIF
+*.jpg linguist-detectable=false
+*.jpg linguist-documentation=false
+*.jpg linguist-language=JPEG
+*.jpeg linguist-detectable=false
+*.jpeg linguist-documentation=false
+*.jpeg linguist-language=JPEG
+*.jfif linguist-detectable=false
+*.jfif linguist-documentation=false
+*.jfif linguist-language=JPEG
+*.jif linguist-detectable=false
+*.jif linguist-documentation=false
+*.jif linguist-language=JPEG
+# JP2 (JPEG 2000)
+*.jp2 linguist-detectable=false
+*.jp2 linguist-documentation=false
+*.jp2 linguist-language=JPEG-2000
+# GIF
+*.gif linguist-detectable=false
+*.gif linguist-documentation=false
+*.gif linguist-language=GIF
+
+# End of linguist script
+
+# File info
+
+# File type: gitattributes file (*.gitattributes)
+# File version: 2 (2023, Sunday, May 14th at 7:06 pm PST)
+# Line count (including blank lines and compiler line): 224
+
+# End of script
